@@ -13,13 +13,32 @@ const generateTemplate = todo => {
     `;
 
   list.innerHTML += html;
+
 };
 
 addForm.addEventListener('submit', e => {
 
   e.preventDefault();
+
+  // removes spaces from input value
   const todo = addForm.add.value.trim();
 
-  generateTemplate(todo);
+  // check if something is typed in textbox
+  if(todo.length) {
+    generateTemplate(todo);
+
+    // reset input fields in form after submit
+    addForm.reset();
+  }
+ 
+});
+
+// delete todos
+list.addEventListener('click', e => {
+
+   if(e.target.classList.contains('delete')) {
+    e.target.parentElement.remove();
+   }
+   
 });
 
